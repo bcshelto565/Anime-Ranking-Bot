@@ -1,6 +1,8 @@
 # Anime-Ranking-Bot
 Discord Bot which provides relevant information regarding anime queried through messages based on rankings and information provided at myanimelist.net
 
+This bot is based on discord's old bot API, I will be working to provide a new version which can be implemented to work with new API syntax.
+
 <a href="https://www.buymeacoffee.com/bcshelto565" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 In the ARB-2.py code and ARB3.py code the TOKEN variable needs to be initialized with the actual token value for the bot in discord so that the bot runs correctly.
