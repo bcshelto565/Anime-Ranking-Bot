@@ -1,6 +1,8 @@
 # Anime-Ranking-Bot
 Discord Bot which provides relevant information regarding anime queried through messages based on rankings and information provided at myanimelist.net
 
+<a href="https://www.buymeacoffee.com/roniemartinez" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 In the ARB-2.py code and ARB3.py code the TOKEN variable needs to be initialized with the actual token value for the bot in discord so that the bot runs correctly.
 
 To run ARB-2.py as a simple local process on a machine, open applicable python terminal and type  "python ARB-2.py" and run. 
