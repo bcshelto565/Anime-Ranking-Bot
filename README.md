@@ -9,7 +9,8 @@ To run ARB-2.py as a simple local process on a machine, open applicable python t
 #### *My version uses my server's specific channel names for parsing responses in channels the bot is allowed to trawl.* ####
 #### *This means it will not respond if your server channels do not have the same names as in the code, simply edit those names in line 35 of ARB3.py or line 31 of ARB-2.py* ####
 
-### *ARB3.py* specific information here \/ ###
+### *ARB3.py* specific information below ###
+### i.e. *if you wanna use the docker version of the bot for simple containerized discord bots* ###
 
 This version of the python file will run on any os capable of running python files. 
 This version does not require a webdriver. 
