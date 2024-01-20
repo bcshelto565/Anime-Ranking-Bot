@@ -48,7 +48,6 @@ async def on_message(message):
             input_string = user_message.lower()
             response = (input_string[7:])
             response2 = response.replace(" ", "%20")
-            #await message.channel.send(response)
             url = f"https://myanimelist.net/search/all?q={response2}&cat=all"
             page = requests.get(url)
             soup = BeautifulSoup(page.text, "html.parser")
@@ -57,32 +56,31 @@ async def on_message(message):
             href_tags = soup.find_all(href=True)
             name = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[1]/div[2]/div[1]/a[1]')[0]))
             episodecount = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[1]/div[2]/div[2]/text()[2]')[0]))
-            #ranking = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div[1]/table/tbody/tr[1]/td/div[1]/div[1]/div[1]/div[1]/div[2]/span[2]')))
-            #score1 = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div[1]/table/tbody/tr[1]/td/div[1]/div[1]/div[1]/div[1]/div[1]/div')))
             url2 = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[1]/div[2]/div[1]/a[1]/@href')[0]))
             print(url2)
             page2 = requests.get(url2)
             soup2 = BeautifulSoup(page2.text, "html.parser")
             something2 = etree.HTML(str(soup2))
-            #ranking = (something2.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div[1]/table/tbody/tr[1]/td/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]'))
-            #a_tags = soup.find_all('a')
-            #print(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[1]/div[2]/div[1]/a[1]'))
-            #ranking = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div[1]/table/tbody/tr[1]/td/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]')))
-            #link = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div[1]/div[3]/div[3]/a')[1]))
+            ranking = (str(something2.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div[1]/table/tbody/tr[1]/td/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/strong/text()[0]')))
             synopsis = (something2.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div[1]/table/tbody/tr[1]/td/p/text()[1]'))
             title = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[1]/div[2]/div[1]/a[1]/text()')[0]))
             await message.channel.send(title)
             await message.channel.send(score)
-            #await message.channel.send(link)
-            await message.channel.send(episodecount)
-            #await message.channel.send(ranking)
-            #await message.channel.send(score1)
-            #await message.channel.send(link)
-            #await message.channel.send(synopsis)
+            sup3 = soup2.find_all("strong")
+            strongCount = 0
+            for sup2 in sup3:
+                if strongCount == 1:
+                    await message.channel.send("Total Site Ranking is: " + sup2.string)
+                elif strongCount == 2:
+                    await message.channel.send("Popularity Ranking is: " + sup2.string)
+                    break
+                strongCount = strongCount + 1
+            if episodecount == "\n       (1 eps)":
+                await message.channel.send("Movie")
+            else:
+                await message.channel.send("TV Show")
+                await message.channel.send(episodecount)
             await message.channel.send(url2)
-            #print(result)
-            #if(response = "!next"):
-                #i+=1
             await message.channel.send("Is this correct? If not message '$next (query)' to grab the next result")
             return
         elif user_message.__contains__("$next"):
