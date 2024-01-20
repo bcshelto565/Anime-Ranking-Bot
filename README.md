@@ -22,11 +22,11 @@ After that just add the image to your docker compose file and the container will
 
 Template compose.yaml with this docker container would look like this:
 
-`version: "2"
+`version: "2"`
 
-services:
-    arb:
-        image: arb:latest
-        container_name: arb
-        restart:
-            unless-stopped`
+`services:`
+    `arb:`
+        `image: arb:latest`
+        `container_name: arb`
+        `restart:`
+            `unless-stopped`
