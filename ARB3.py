@@ -1,7 +1,6 @@
 import discord
 from bs4 import BeautifulSoup
 import requests
-import re
 from lxml import etree
 
 TOKEN = '' # place discord token here
@@ -10,7 +9,6 @@ TOKEN = '' # place discord token here
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
-# client = discord.Client(intents=discord.Intents.default())
 
 search_term = ""
 
@@ -53,16 +51,11 @@ async def on_message(message):
             soup = BeautifulSoup(page.text, "html.parser")
             something = etree.HTML(str(soup))
             score = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[1]/div[2]/div[2]/text()[3]')[0]))
-            href_tags = soup.find_all(href=True)
-            name = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[1]/div[2]/div[1]/a[1]')[0]))
             episodecount = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[1]/div[2]/div[2]/text()[2]')[0]))
             url2 = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[1]/div[2]/div[1]/a[1]/@href')[0]))
             print(url2)
             page2 = requests.get(url2)
             soup2 = BeautifulSoup(page2.text, "html.parser")
-            something2 = etree.HTML(str(soup2))
-            ranking = (str(something2.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div[1]/table/tbody/tr[1]/td/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/strong/text()[0]')))
-            synopsis = (something2.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/table/tbody/tr/td[2]/div[1]/table/tbody/tr[1]/td/p/text()[1]'))
             title = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[1]/div[2]/div[1]/a[1]/text()')[0]))
             await message.channel.send(title)
             await message.channel.send(score)
@@ -92,7 +85,6 @@ async def on_message(message):
             page = requests.get(url)
             soup = BeautifulSoup(page.text, "html.parser")
             something = etree.HTML(str(soup))
-            name = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[' + str(i) + ']/div[2]/div[1]/a[1]')[0]))
             score = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[' + str(i) + ']/div[2]/div[2]/text()[3]')[0]))
             episodecount = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[' + str(i) + ']/div[2]/div[2]/text()[2]')[0]))
             url2 = (str(something.xpath('/html/body/div[1]/div[2]/div[3]/div[2]/div[2]/div[1]/div/article[1]/div[' + str(i) + ']/div[2]/div[1]/a[1]/@href')[0]))
