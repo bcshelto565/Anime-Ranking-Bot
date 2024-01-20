@@ -25,8 +25,8 @@ Template compose.yaml with this docker container would look like this:
 `version: "2"`
 
 `services:`
-    `arb:`
-        `image: arb:latest`
-        `container_name: arb`
-        `restart:`
-            `unless-stopped`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`arb:`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`image: arb:latest`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`container_name: arb`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`restart:`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`unless-stopped`
